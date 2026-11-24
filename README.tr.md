@@ -23,11 +23,11 @@ Bu komut, dahili oyuncak adayı (düz alt dizgi eşleyici) dahili örnek veriyle
 3. **Aday protokolü**: stdin'e `{"client", "event", "input", "cwd"}` gelir (doğru cevap asla gönderilmez). stdout, `{"results":[{"id":"L001","source":"examples/lessons.md:3"}]}` gibi JSON ya da ders kimliği veya `yol:satır` kaynağı geçen düz metin olabilir. Sıfırdan farklı çıkış kodu ya da zaman aşımı hata sayılır; boş (başarılı) cevap sayılmaz.
 4. **Puanlama**: recall@k (varsayılan k=3), adayın yazdığı her şey üzerinden precision (bilinmeyen ya da ayrıştırılamayan öğe aleyhine sayılır), negatif ve yakın negatif senaryolarda yanlış alarm oranı, soğuk başlangıç gecikmesinin medyanı ve p95'i, istemci x olay matrisi ve sayısal kimliğe göre %70/%30 geliştirme/ayrılmış küme bölünmesi. **Kapı**, bunları sizin belirlediğiniz eşiklerle karşılaştırır.
 
-Yararlı seçenekler: `--adapter claude-hook` (kanonik yük yerine Claude Code tarzı kanca girdisi gönderir; desteklenmeyen olaylar atlandı diye raporlanır), `--source-roots roots.json` (`scheme://alias/yol` kaynaklarını klasörlere eşler), `--wrapper-prefix METİN` (kancanın başlık satırını yok sayar), `--min-recall`, `--min-precision`, `--max-false-alarm`, `--max-p95-ms`, `--min-positive` ve diğer `--min-*` veri boyutu denetimleri, `--split development|holdout`, `--validate-only`. Ayrıntı: `python lesson_eval.py --help`.
+Yararlı seçenekler: `--adapter claude-hook` (kanonik yük yerine Claude Code tarzı kanca girdisi gönderir; desteklenmeyen olaylar atlandı diye raporlanır), `--source-roots DOSYA` (takma ad → klasör eşleyen bir JSON nesnesi, örn. `{"lessons": "/yol/dersler"}`; `scheme://alias/yol` kaynaklarını klasörlere eşler), `--wrapper-prefix METİN` (kancanın başlık satırını yok sayar), `--min-recall`, `--min-precision`, `--max-false-alarm`, `--max-p95-ms`, `--min-positive` ve diğer `--min-*` veri boyutu denetimleri, `--split development|holdout`, `--validate-only`. Ayrıntı: `python lesson_eval.py --help`.
 
 ## Gereksinimler
 
-Python 3.12+, üçüncü taraf paket yok. Yazarın Windows makinesinde denendi. Ubuntu ve Windows için bir CI iş akışı eklidir ama henüz çalışmadı.
+Python 3.12+, üçüncü taraf paket yok. Yazarın Windows makinesinde denendi. Ubuntu ve Windows için bir CI iş akışı testleri çalıştırır (Actions sekmesine bakın).
 
 ## Sınırlar ve dürüst notlar
 

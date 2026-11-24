@@ -23,11 +23,11 @@ This evaluates the bundled toy candidate (a plain substring matcher) against the
 3. **Candidate protocol**: stdin gets `{"client", "event", "input", "cwd"}` (never the ground truth). stdout may be JSON such as `{"results":[{"id":"L001","source":"examples/lessons.md:3"}]}` or plain text that mentions lesson ids or `path:line` sources. A non-zero exit or a timeout counts as an error, never as an empty (successful) answer.
 4. **Scoring**: recall@k (default k=3), precision over everything the candidate printed (unknown or unparsable items count against it), false-alarm rate on negative and near-negative scenarios, median and p95 cold-start latency, plus a client x event matrix and a numeric-id 70/30 development/holdout split. The **gate** compares these with thresholds you set.
 
-Useful options: `--adapter claude-hook` (sends Claude Code style hook inputs instead of the canonical payload; unsupported events are reported as skipped), `--source-roots roots.json` (map `scheme://alias/path` sources to directories), `--wrapper-prefix TEXT` (ignore a hook's heading line), `--min-recall`, `--min-precision`, `--max-false-alarm`, `--max-p95-ms`, `--min-positive` and the other `--min-*` dataset-size checks, `--split development|holdout`, `--validate-only`. See `python lesson_eval.py --help`.
+Useful options: `--adapter claude-hook` (sends Claude Code style hook inputs instead of the canonical payload; unsupported events are reported as skipped), `--source-roots FILE` (a JSON object of alias to directory, e.g. `{"lessons": "/path/to/lessons"}`, mapping `scheme://alias/path` sources to directories), `--wrapper-prefix TEXT` (ignore a hook's heading line), `--min-recall`, `--min-precision`, `--max-false-alarm`, `--max-p95-ms`, `--min-positive` and the other `--min-*` dataset-size checks, `--split development|holdout`, `--validate-only`. See `python lesson_eval.py --help`.
 
 ## Requirements
 
-Python 3.12+, no third-party packages. Tested on the author's Windows machine. A CI workflow for Ubuntu and Windows is included but has not run yet.
+Python 3.12+, no third-party packages. Tested on the author's Windows machine. A CI workflow runs the tests on Ubuntu and Windows (see the Actions tab).
 
 ## Limits and honest caveats
 
