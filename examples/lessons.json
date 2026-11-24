@@ -1,0 +1,47 @@
+[
+  {
+    "id": "L001",
+    "source": "examples/lessons.md:3",
+    "lesson": "Confirm with the owner before force-pushing a shared branch.",
+    "trigger": {"events": ["user_prompt", "pre_tool_bash"], "pattern": "force push to a shared branch"},
+    "deterministic": true,
+    "status": "built_in",
+    "match_phrases": ["force push", "push --force", "push -f"]
+  },
+  {
+    "id": "L002",
+    "source": "examples/lessons.md:5",
+    "lesson": "Run the full test suite before you say work is finished or ready to merge.",
+    "trigger": {"events": ["user_prompt", "pre_tool_agent"], "pattern": "claiming completion"},
+    "deterministic": true,
+    "status": "built_in",
+    "match_phrases": ["tests pass", "all done", "ready to merge"]
+  },
+  {
+    "id": "L003",
+    "source": "examples/lessons.md:7",
+    "lesson": "Never print or paste secrets; read them from the environment.",
+    "trigger": {"events": ["user_prompt", "pre_tool_bash", "pre_tool_edit"], "pattern": "secret handling"},
+    "deterministic": true,
+    "status": "built_in",
+    "match_phrases": ["api key", "token", "password", ".env"]
+  },
+  {
+    "id": "L004",
+    "source": "examples/lessons.md:9",
+    "lesson": "Pin dependency versions; do not upgrade silently when installing.",
+    "trigger": {"events": ["user_prompt", "pre_tool_bash", "pre_tool_agent"], "pattern": "installing or upgrading packages"},
+    "deterministic": true,
+    "status": "candidate",
+    "match_phrases": ["npm install", "pip install", "upgrade dependency"]
+  },
+  {
+    "id": "L005",
+    "source": "examples/lessons.md:11",
+    "lesson": "Check today's date before making claims about relative time.",
+    "trigger": {"events": ["user_prompt", "session_start"], "pattern": "relative time words"},
+    "deterministic": true,
+    "status": "candidate",
+    "match_phrases": ["yesterday", "last week", "this quarter"]
+  }
+]
